@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <cn.carbs.android.gregorianlunarcalendar.library.indicator.IndicatorView
+        android:id="@+id/indicator_view"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#ffeeeeee"
+        app:iv_IndicatorColorEnd="@color/colorLunar"
+        app:iv_IndicatorColorGradient="true"
+        app:iv_IndicatorColorStart="@color/colorGregorian"
+        app:iv_IndicatorEven="true"
+        app:iv_IndicatorHeight="2dp"
+        app:iv_IndicatorSelectedIndex="0"
+        app:iv_IndicatorTextArray="@array/indicator_string_array"
+        app:iv_IndicatorTextSize="16dp" />
+
+    <cn.carbs.android.gregorianlunarcalendar.library.view.GregorianLunarCalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:glcv_GregorianThemeColor="@color/colorGregorian"
+        app:glcv_LunarThemeColor="@color/colorLunar"
+        app:glcv_NormalTextColor="#FF777777"
+        app:glcv_ScrollAnimation="true" />
+
+    <View
+        android:id="@+id/xpopup_divider1"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"
+        android:layout_marginTop="20dp"
+        android:background="#EEEEEE" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="取消"
+            android:textColor="#666666"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/xpopup_divider2"
+            android:layout_width=".5dp"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="确定"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_get_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/get_data"
+        android:visibility="gone" />
+
+</LinearLayout>
