@@ -1,4 +1,4 @@
-package cn.carbs.android.gregorianlunarcalendar;
+package cn.carbs.android.gregorianlunarcalendar.library.dialog;
 
 public class SelectDate {
     private String calendar ;

@@ -1,4 +1,4 @@
-package cn.carbs.android.gregorianlunarcalendar;
+package cn.carbs.android.gregorianlunarcalendar.library.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,11 +9,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.Date;
 
+import cn.carbs.android.gregorianlunarcalendar.library.R;
 import cn.carbs.android.gregorianlunarcalendar.library.data.ChineseCalendar;
 import cn.carbs.android.gregorianlunarcalendar.library.indicator.IndicatorView;
 import cn.carbs.android.gregorianlunarcalendar.library.view.GregorianLunarCalendarView;
@@ -134,10 +133,9 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.button_get_data:
- /*               GregorianLunarCalendarView.CalendarData calendarData = mGLCView.getCalendarData();
+        int id = v.getId();
+        if (id == R.id.button_get_data) {
+            /*GregorianLunarCalendarView.CalendarData calendarData = mGLCView.getCalendarData();
                 Calendar calendar = calendarData.getCalendar();
                 String showToast = "Gregorian : " + calendar.get(Calendar.YEAR) + "-"
                         + (calendar.get(Calendar.MONTH) + 1) + "-"
@@ -146,27 +144,21 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
                         + (calendar.get(ChineseCalendar.CHINESE_MONTH)) + "-"
                         + calendar.get(ChineseCalendar.CHINESE_DATE);
                 Toast.makeText(mContext.getApplicationContext(), showToast, Toast.LENGTH_LONG).show();*/
-                break;
-            case R.id.tv_confirm:
-                GregorianLunarCalendarView.CalendarData calendarData = mGLCView.getCalendarData();
-                Calendar calendar = calendarData.getCalendar();
-                SelectDate selectDate = new SelectDate();
-                selectDate.setCalendar(calendar.get(Calendar.YEAR) + "-"
-                        + (calendar.get(Calendar.MONTH) + 1) + "-"
-                        + calendar.get(Calendar.DAY_OF_MONTH));
-                selectDate.setChineseCalendar(calendar.get(ChineseCalendar.CHINESE_YEAR) + "-"
-                        + (calendar.get(ChineseCalendar.CHINESE_MONTH)) + "-"
-                        + calendar.get(ChineseCalendar.CHINESE_DATE));
-                onConfirmListener.confirm(selectDate);
-                dismiss();
-                break;
-
-            case R.id.tv_cancel:
-                dismiss();
-                onCancelListener.cancel();
-                break;
-
-
+        } else if (id == R.id.tv_confirm) {
+            GregorianLunarCalendarView.CalendarData calendarData = mGLCView.getCalendarData();
+            Calendar calendar = calendarData.getCalendar();
+            SelectDate selectDate = new SelectDate();
+            selectDate.setCalendar(calendar.get(Calendar.YEAR) + "-"
+                    + (calendar.get(Calendar.MONTH) + 1) + "-"
+                    + calendar.get(Calendar.DAY_OF_MONTH));
+            selectDate.setChineseCalendar(calendar.get(ChineseCalendar.CHINESE_YEAR) + "-"
+                    + (calendar.get(ChineseCalendar.CHINESE_MONTH)) + "-"
+                    + calendar.get(ChineseCalendar.CHINESE_DATE));
+            onConfirmListener.confirm(selectDate);
+            dismiss();
+        } else if (id == R.id.tv_cancel) {
+            dismiss();
+            onCancelListener.cancel();
         }
     }
 
@@ -176,9 +168,6 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
         this.setCanceledOnTouchOutside(true);
         super.show();
         this.initCalendar(dateYMD, calendarType);
-        //  this.toLunarMode();
-//        mIndicatorView.setIndex(1);
-
 
     }
 
