@@ -93,14 +93,16 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
                 .asListener(new DialogGLC.OnConfirmListener() {
                     @Override
                     public void confirm(SelectDate selectDate) {
-                        Toast.makeText(ActivityMain.this, selectDate.getCalendar(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ActivityMain.this, selectDate.getCalendar() + "  选择日期类型" + selectDate.getSelectDateIndex(), Toast.LENGTH_SHORT).show();
                     }
                 }, new DialogGLC.OnCancelListener() {
                     @Override
                     public void cancel() {
 
                     }
-                }, dateYMD, DialogGLC.DEFAULT_CALENDAR_TYPE);
+                    // DialogGLC.CHINESE_CALENDAR_TYPE  dialog开启式切换到农历
+                    //DateYMD是新历 会映射成农历  （例如用户选择确定会返还）
+                }, dateYMD, DialogGLC.CHINESE_CALENDAR_TYPE);
         dialogGLC.show();
 
     }

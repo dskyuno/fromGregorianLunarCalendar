@@ -3,6 +3,7 @@ package cn.carbs.android.gregorianlunarcalendar.library.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -23,8 +24,8 @@ import cn.carbs.android.gregorianlunarcalendar.library.view.GregorianLunarCalend
  */
 
 public class DialogGLC extends Dialog implements View.OnClickListener, IndicatorView.OnIndicatorChangedListener {
-    public static final int DEFAULT_CALENDAR_TYPE = 1;
-    public static final int CHINESE_CALENDAR_TYPE = 0;
+    public static final int DEFAULT_CALENDAR_TYPE = 0;
+    public static final int CHINESE_CALENDAR_TYPE = 1;
 
 
     private Context mContext;
@@ -92,6 +93,14 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
             this.context = context;
         }
 
+        /**
+         * @param onConfirmListener 确认监听
+         * @param onCancelListener  取消监听
+         * @param dateYMD           日期 新历 例如
+         * @param calendarType      dialog弹出的时候默认选中的类型
+         * @return
+         */
+
         public DialogGLC asListener(OnConfirmListener onConfirmListener, OnCancelListener onCancelListener, DateYMD dateYMD, int calendarType) {
             DialogGLC dialogGLC = new DialogGLC(context, dateYMD, calendarType);
             dialogGLC.setAsListener(onConfirmListener, onCancelListener);
@@ -146,6 +155,7 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
                 Toast.makeText(mContext.getApplicationContext(), showToast, Toast.LENGTH_LONG).show();*/
         } else if (id == R.id.tv_confirm) {
             GregorianLunarCalendarView.CalendarData calendarData = mGLCView.getCalendarData();
+
             Calendar calendar = calendarData.getCalendar();
             SelectDate selectDate = new SelectDate();
             selectDate.setCalendar(calendar.get(Calendar.YEAR) + "-"
@@ -154,6 +164,8 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
             selectDate.setChineseCalendar(calendar.get(ChineseCalendar.CHINESE_YEAR) + "-"
                     + (calendar.get(ChineseCalendar.CHINESE_MONTH)) + "-"
                     + calendar.get(ChineseCalendar.CHINESE_DATE));
+            Object[] ret = mIndicatorView.getCurrIndexAndOffset();
+            selectDate.setSelectDateIndex(Integer.parseInt(String.valueOf(ret[0])));
             onConfirmListener.confirm(selectDate);
             dismiss();
         } else if (id == R.id.tv_cancel) {
