@@ -117,6 +117,22 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
         }
     }
 
+    public SelectDate getSelectDate() {
+        GregorianLunarCalendarView.CalendarData calendarData = mGLCView.getCalendarData();
+
+        Calendar calendar = calendarData.getCalendar();
+        SelectDate selectDate = new SelectDate();
+        selectDate.setCalendar(calendar.get(Calendar.YEAR) + "-"
+                + (calendar.get(Calendar.MONTH) + 1) + "-"
+                + calendar.get(Calendar.DAY_OF_MONTH));
+        selectDate.setChineseCalendar(calendar.get(ChineseCalendar.CHINESE_YEAR) + "-"
+                + (calendar.get(ChineseCalendar.CHINESE_MONTH)) + "-"
+                + calendar.get(ChineseCalendar.CHINESE_DATE));
+        Object[] ret = mIndicatorView.getCurrIndexAndOffset();
+        selectDate.setSelectDateIndex(Integer.parseInt(String.valueOf(ret[0])));
+        return selectDate;
+    }
+
     public void initCalendar(DateYMD dateYMD, int calendarType) {
         // mGLCView.init();
         //  Calendar cal =Calendar.getInstance();
