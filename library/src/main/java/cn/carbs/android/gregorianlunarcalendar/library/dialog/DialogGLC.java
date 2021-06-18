@@ -156,6 +156,31 @@ public class DialogGLC extends Dialog implements View.OnClickListener, Indicator
         }
     }
 
+
+    public void initCalendarOnlyGetTime(DateYMD dateYMD, int calendarType) {
+        // mGLCView.init();
+        //  Calendar cal =Calendar.getInstance();
+       /* cal.setTime(new Date());
+
+        final int last = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        cal.set(Calendar.DAY_OF_MONTH, last);*/
+        ChineseCalendar instance = new ChineseCalendar(dateYMD.getYear(), getRealMonth(dateYMD.getMonth()), dateYMD.getDay());
+
+        if (calendarType == CHINESE_CALENDAR_TYPE) {
+            mGLCView.init(instance, false);
+            //设置上面移动那个唯一
+            //   mIndicatorView.setmIndicatorSelectedIndex(1);
+
+            toLunarMode();
+        } else {
+            //  mIndicatorView.setmIndicatorSelectedIndex(0);
+            mGLCView.init(instance);
+            toGregorianMode();
+        }
+    }
+
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
